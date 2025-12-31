@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Шинэ жилийн мэнд, Удвал!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      /* Ягаан өнгийн гоёмсог градиент */
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: #5d1a1a; /* Текст илүү тод харагдах бор ягаан өнгө */
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(45px, 10vw, 75px);
+      margin-bottom: 0;
+      color: #fff;
+      text-shadow: 2px 4px 10px rgba(255, 77, 109, 0.5);
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 10px #fff; }
+      50% { transform: scale(1.02); text-shadow: 0 0 25px #fff, 0 0 40px #ff4d6d; }
+    }
+
+    /* --- ГАЦУУР МОДНЫ ЗУРАГ --- */
+    .tree-box {
+      position: relative;
+      width: 280px;
+      margin: 20px auto;
+    }
+
+    .main-tree {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 10px 20px rgba(255, 105, 180, 0.4));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
+    }
+
+    /* --- КАРТ --- */
+    .card {
+      background: rgba(255, 255, 255, 0.4); /* Илүү тунгалаг цагаан */
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      margin-top: 20px;
+      box-shadow: 0 15px 35px rgba(255, 154, 158, 0.3);
+      color: #4a4a4a;
+    }
+
+    /* Цасны эффект (Ягаан фон дээр цагаан цас гоё харагдана) */
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) translateX(20px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="snow-container"></div>
+
+  <div class="container">
+    <div style="font-size: 50px; animation: heartbeat 1.5s infinite;">💖</div>
+    <h1>Шинэ жилийн мэнд, Удвал!</h1>
+    
+    <div class="tree-box">
+      <img src="modd-removebg-preview.png" 
+           alt="Christmas Tree" class="main-tree">
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0; color: #ff4d6d;">✨ 2026 он ✨</h3>
+      <p style="font-size: 1.1rem; line-height: 1.7; font-weight: 400;">
+        Чамтай өнгөрөөсөн мөч бүр яг цас шиг зөөлөн, <br>
+        гэрэлт багана шиг дулаахан байдаг. <br><br>
+        Ирж буй шинэ ондоо аз жаргалаар бялхаж,<br>
+        хүсэл бүхэн чинь биелэх болтугай! 🫶
+      </p>
+      <div style="font-size: 30px;">🌸 ❄️ 🎁</div>
+    </div>
+  </div>
+
+  <script>
+    // Цас үүсгэх
+    const snowContainer = document.getElementById('snow-container');
+    for (let i = 0; i < 80; i++) {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      const size = Math.random() * 6 + 2;
+      snowflake.style.width = size + 'px';
+      snowflake.style.height = size + 'px';
+      snowflake.style.left = Math.random() * 100 + '%';
+      snowflake.style.opacity = Math.random();
+      snowflake.style.animationDuration = (Math.random() * 4 + 5) + 's';
+      snowflake.style.animationDelay = Math.random() * 5 + 's';
+      snowContainer.appendChild(snowflake);
+    }
+
+    // Зүрхэн анимаци
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes heartbeat {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Дархад зүрх гарах эффект
+    document.addEventListener('mousedown', (e) => {
+      const heart = document.createElement('div');
+      heart.innerHTML = '🌸';
+      heart.style.position = 'fixed';
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      heart.style.fontSize = '24px';
+      heart.style.pointerEvents = 'none';
+      heart.animate([
+        { transform: 'translateY(0) scale(1)', opacity: 1 },
+        { transform: 'translateY(-100px) scale(2)', opacity: 0 }
+      ], { duration: 1000 });
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    });
+  </script>
+</body>
+</html>
